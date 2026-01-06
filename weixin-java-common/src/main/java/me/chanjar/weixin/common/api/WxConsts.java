@@ -12,7 +12,7 @@ import static me.chanjar.weixin.common.error.WxMpErrorMsgEnum.*;
 /**
  * 微信开发所使用到的常量类.
  *
- * @author Daniel Qian & binarywang & Wang_Wong
+ * @author Daniel Qian, binarywang, Wang_Wong
  */
 @UtilityClass
 public class WxConsts {

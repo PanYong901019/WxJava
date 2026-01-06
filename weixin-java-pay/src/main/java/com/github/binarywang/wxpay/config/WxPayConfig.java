@@ -325,7 +325,8 @@ public class WxPayConfig {
    *
    * @return org.apache.http.impl.client.CloseableHttpClient
    * @author doger.wang
-   **/
+   * @throws WxPayException 微信支付异常
+   */
   public CloseableHttpClient initApiV3HttpClient() throws WxPayException {
     if (StringUtils.isBlank(this.getApiV3Key())) {
       throw new WxPayException("请确保apiV3Key值已设置");
@@ -663,6 +664,8 @@ public class WxPayConfig {
 
   /**
    * 配置HTTP代理
+   *
+   * @param httpClientBuilder HttpClient构建器
    */
   private void configureProxy(org.apache.http.impl.client.HttpClientBuilder httpClientBuilder) {
     if (StringUtils.isNotBlank(this.getHttpProxyHost()) && this.getHttpProxyPort() > 0) {
