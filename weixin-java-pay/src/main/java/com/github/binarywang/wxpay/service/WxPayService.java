@@ -79,6 +79,18 @@ public interface WxPayService {
   boolean switchover(String mchId, String appId);
 
   /**
+   * 仅根据商户号进行切换.
+   * 适用于一个商户号对应多个appId的场景，切换时会匹配符合该商户号的配置.
+   * 注意：由于HashMap迭代顺序不确定，当存在多个匹配项时返回的配置是不可预测的，建议使用精确匹配方式.
+   *
+   * @param mchId 商户标识
+   * @return 切换是否成功，如果找不到匹配的配置则返回false
+   */
+  default boolean switchover(String mchId) {
+    return false;
+  }
+
+  /**
    * 进行相应的商户切换.
    *
    * @param mchId 商户标识
@@ -86,6 +98,19 @@ public interface WxPayService {
    * @return 切换成功 ，则返回当前对象，方便链式调用，否则抛出异常
    */
   WxPayService switchoverTo(String mchId, String appId);
+
+  /**
+   * 仅根据商户号进行切换.
+   * 适用于一个商户号对应多个appId的场景，切换时会匹配符合该商户号的配置.
+   * 注意：由于HashMap迭代顺序不确定，当存在多个匹配项时返回的配置是不可预测的，建议使用精确匹配方式.
+   *
+   * @param mchId 商户标识
+   * @return 切换成功，则返回当前对象，方便链式调用
+   * @throws me.chanjar.weixin.common.error.WxRuntimeException 如果找不到匹配的配置
+   */
+  default WxPayService switchoverTo(String mchId) {
+    throw new me.chanjar.weixin.common.error.WxRuntimeException("子类需要实现此方法");
+  }
 
   /**
    * 发送post请求，得到响应字节数组.
