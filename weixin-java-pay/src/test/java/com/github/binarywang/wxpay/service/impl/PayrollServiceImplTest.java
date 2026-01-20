@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
+import java.util.Collections;
+
 /**
  * 微工卡（服务商）
  *
@@ -122,6 +124,31 @@ public class PayrollServiceImplTest {
     String billType = "NO_SUCC";
     String billDate = "2019-08-17";
     WxPayApplyBillV3Result result = wxPayService.getPayrollService().merchantFundWithdrawBillType(billType, billDate, null);
+    log.info(result.toString());
+  }
+
+  @Test
+  public void payrollCardTransferBatches() throws WxPayException {
+    PayrollTransferBatchesRequest request = PayrollTransferBatchesRequest.builder()
+      .appid("wxa1111111")
+      .subMchid("1111111")
+      .subAppid("wxa1111111")
+      .outBatchNo("plfk2020042013" + System.currentTimeMillis())
+      .batchName("2019年1月深圳分部报销单")
+      .batchRemark("2019年1月深圳分部报销单")
+      .totalAmount(200000L)
+      .totalNum(1)
+      .transferDetailList(Collections.singletonList(
+        PayrollTransferBatchesRequest.TransferDetail.builder()
+          .outDetailNo("x23zy545Bd5436" + System.currentTimeMillis())
+          .transferAmount(200000L)
+          .transferRemark("2020年4月报销")
+          .openid("o-MYE42l80oelYMDE34nYD456Xoy")
+          .userName("张三")
+          .build()
+      ))
+      .build();
+    PayrollTransferBatchesResult result = wxPayService.getPayrollService().payrollCardTransferBatches(request);
     log.info(result.toString());
   }
 
