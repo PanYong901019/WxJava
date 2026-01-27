@@ -47,10 +47,8 @@
           <img height="120" src="https://gitee.com/binary/weixin-java-tools/raw/develop/images/qrcodes/mp.png" alt="mp qrcode">
         </a>
       </td>
-      <td align="center">
-        <a href="https://www.diboot.com?from=wxjava" target="_blank">
-          <img height="120" src="https://www.diboot.com/img/diboot_ad.png" alt="diboot低代码开发平台">
-        </a>
+      <td align="center" style="font-size: 18px; font-weight: bold; vertical-align: middle;">
+        赞助商招募中
       </td>
       <td align="center">
         <a href="https://www.crmeb.com/xiazai" target="_blank">
